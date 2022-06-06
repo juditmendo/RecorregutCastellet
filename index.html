@@ -2,11 +2,104 @@
 <html>
 	<head>
 		<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+		<script>
+				var id = 13;
+				const rooms = [13,21,22,23,24,25,26,27,28,29,30,31,33,35,37,41,50,51];
+				AFRAME.registerComponent("mylink", {
+					init: function() {
+					 this.el.addEventListener("click", (e) => {
+
+						switch(e.target.id) {
+							case "suma10":
+								if (rooms.includes(id + 10)){
+									document.getElementById("fons").setAttribute("src", "#"+(id += 10));
+								}
+								break;
+							case "resta10":
+
+								if (rooms.includes(id - 10)){
+									document.getElementById("fons").setAttribute("src", "#"+(id -= 10));
+								}
+								break;
+							case "resta1":
+								if (rooms.includes(id - 1)){
+									document.getElementById("fons").setAttribute("src", "#"+(id -= 1));
+								}
+								break;
+							case "suma1":
+								if (rooms.includes(id + 1)){
+									document.getElementById("fons").setAttribute("src", "#"+(id += 1));
+								}
+								break;
+						}
+						hideArrows(id);
+					 })
+					}
+				})
+				function hideArrows(id) {
+						const arrows = ["suma10", "resta10", "suma1", "resta1"];
+						arrows.forEach(
+							e => {
+								document.getElementById(e).setAttribute("visible", "true");
+							}
+						);
+						if (!rooms.includes(id + 10)){
+							document.getElementById("suma10").setAttribute("visible", "false");
+						}
+						if (!rooms.includes(id - 10)){
+							document.getElementById("resta10").setAttribute("visible", "false");
+						}
+						if (!rooms.includes(id + 1)){
+							document.getElementById("suma1").setAttribute("visible", "false");
+						}
+						if (!rooms.includes(id - 1)){
+							document.getElementById("resta1").setAttribute("visible", "false");
+						}
+				}
+		</script>
+
 	</head>
 	<body>
-		<a-scene>
-			<a-sky color="#005"></a-sky>
-			<a-sphere position="0 2 -5" radius="1" ></a-sphere>
+	<a-scene cursor="rayOrigin: mouse">
+		<a-assets>
+			<img id="30" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/30.JPG?v=1652883090695" >
+			<img id="3" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/entragroc.png?v=1651673414044" >
+			<img id="13" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/13.JPG?v=1652883085706" >
+			<img id="21" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/21.JPG?v=1652883086036" >
+			<img id="22" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/22.JPG?v=1652883085797" >
+			<img id="23" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/23.JPG?v=1652883086399" >
+			<img id="33" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/33.JPG?v=1652883095624" >
+			<img id="31" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/31.JPG?v=1652883095236" >
+			<img id="41" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/41.JPG?v=1652883095327" >
+			<img id="51" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/51.JPG?v=1652883094926" >
+			<img id="50" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/50.JPG?v=1652883095429" >
+			<img id="24" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/24.JPG?v=1652883090413" >
+			<img id="25" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/25.JPG?v=1652883090236" >
+			<img id="26" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/26.JPG?v=1652883085944" >
+			<img id="27" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/27.JPG?v=1652883090623" >
+			<img id="28" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/28.JPG?v=1652883086171" >
+			<img id="29" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/29.JPG?v=1652883090527" >
+			<img id="37" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/37.JPG?v=1652883094832" >
+			<img id="35" src="https://cdn.glitch.global/bbaf68c6-6f6f-4b3f-9427-70bf310da9dd/35.JPG?v=1652883091147" >
+		</a-assets>
+		<a-entity camera look-controls wasd-controls="false">
+		 <a-entity cursor="fuse: true; fuseTimeout: 2000"
+					 position="0 0 -1"
+					 geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+					 material="color: red; shader: flat"
+					 animation="property: components.material.material.color;
+								 type: color;
+								 to: white;
+								 dur: 1000;
+								 dir: alternate;
+								 loop: true">
+		 </a-entity>
+		</a-entity>
+			<a-sky id="fons" src="#13"></a-sky>
+			<a-plane id="suma10" position="0 1 -8" src="#3" rotation="0 0 0"  transparent="true" mylink=""></a-plane>
+			<a-plane visible="false" id="suma1" position="-8 1 -0" src="#3" rotation="0 90 0"  transparent="true" mylink=""></a-plane>
+			<a-plane visible="false" id="resta10" position="0 1 8" src="#3" rotation="0 180 0"  transparent="true" mylink=""></a-plane>
+			<a-plane visible="false" id="resta1" position="8 1 0" src="#3" rotation="0 270 0"  transparent="true" mylink=""></a-plane>
 		</a-scene>
 	</body>
 </html>
